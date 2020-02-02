@@ -13,7 +13,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 @Aspect
 public class LogInputAspect {
 
-  @Before("@annotation(de.reebow.loga.annotations.LogInput)")
+  @Before("@annotation(de.reebow.loga.annotations.LogInput) && execution(* *(..))")
   public void logInput(JoinPoint joinPoint) {
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     Logger logger = LogManager.getLogger(signature.getDeclaringType());
