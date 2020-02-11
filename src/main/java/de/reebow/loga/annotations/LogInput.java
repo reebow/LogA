@@ -11,6 +11,6 @@ import org.apache.logging.log4j.spi.StandardLevel;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogInput {
 
-  StandardLevel value() default StandardLevel.DEBUG;
+  StandardLevel logLevel();
 
 }

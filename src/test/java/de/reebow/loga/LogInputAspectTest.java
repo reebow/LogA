@@ -55,7 +55,7 @@ public class LogInputAspectTest {
     when(signature.getDeclaringType()).thenReturn(this.getClass());
     when(signature.getMethod()).thenReturn(method);
     when(method.getAnnotation(any())).thenReturn(logInput);
-    when(logInput.value()).thenReturn(StandardLevel.DEBUG);
+    when(logInput.logLevel()).thenReturn(StandardLevel.DEBUG);
 
     Configurator.setLevel(this.getClass().getCanonicalName(), Level.ERROR);
 
