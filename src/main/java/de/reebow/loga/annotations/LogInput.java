@@ -5,12 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.apache.logging.log4j.spi.StandardLevel;
+import de.reebow.loga.LogLevel;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogInput {
 
-  StandardLevel logLevel();
+  LogLevel logLevel() default LogLevel.CONFIG;
 
 }

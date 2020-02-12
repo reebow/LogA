@@ -14,7 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.core.config.Configurator;
-import org.apache.logging.log4j.spi.StandardLevel;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,7 +54,7 @@ public class LogInputAspectTest {
     when(signature.getDeclaringType()).thenReturn(this.getClass());
     when(signature.getMethod()).thenReturn(method);
     when(method.getAnnotation(any())).thenReturn(logInput);
-    when(logInput.logLevel()).thenReturn(StandardLevel.DEBUG);
+    when(logInput.logLevel()).thenReturn(LogLevel.DEBUG);
 
     Configurator.setLevel(this.getClass().getCanonicalName(), Level.ERROR);
 

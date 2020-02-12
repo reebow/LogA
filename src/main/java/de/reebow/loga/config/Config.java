@@ -1,16 +1,16 @@
 package de.reebow.loga.config;
 
-import org.apache.logging.log4j.spi.StandardLevel;
+import de.reebow.loga.LogLevel;
 
 public final class Config {
 
-  private final StandardLevel defaultLogLevel;
+  private final LogLevel defaultLogLevel;
 
-  public Config(StandardLevel defaultLogLevel) {
+  public Config(LogLevel defaultLogLevel) {
     this.defaultLogLevel = defaultLogLevel;
   }
 
-  public StandardLevel defaultLogLevel() {
+  public LogLevel defaultLogLevel() {
     return defaultLogLevel;
   }
 

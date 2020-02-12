@@ -6,9 +6,9 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import de.reebow.loga.LogLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.spi.StandardLevel;
 
 public class PropertiesConfigParser implements ConfigParser {
 
@@ -27,8 +27,8 @@ public class PropertiesConfigParser implements ConfigParser {
 
       properties.load(inputStream);
 
-      StandardLevel standardLevel = getStandardLevel(properties);
-      return new Config(standardLevel);
+      LogLevel logLevel = getLogLevel(properties);
+      return new Config(logLevel);
     } catch (IOException e) {
       log.error("Could not read properties file, returning default config.", e);
       return defaultConfig();
@@ -39,11 +39,11 @@ public class PropertiesConfigParser implements ConfigParser {
     return new Config(DefaultConfigValues.defaultLogLevel());
   }
 
-  private StandardLevel getStandardLevel(Properties properties) {
+  private LogLevel getLogLevel(Properties properties) {
     String defaultLogLevelString = properties.getProperty("defaultLogLevel");
     if (defaultLogLevelString == null) {
       return DefaultConfigValues.defaultLogLevel();
     }
-    return StandardLevel.valueOf(defaultLogLevelString);
+    return LogLevel.valueOf(defaultLogLevelString);
   }
 }

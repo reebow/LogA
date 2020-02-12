@@ -1,6 +1,6 @@
 package de.reebow.loga.config;
 
-import org.apache.logging.log4j.spi.StandardLevel;
+import de.reebow.loga.LogLevel;
 
 public final class DefaultConfigValues {
 
@@ -8,8 +8,8 @@ public final class DefaultConfigValues {
     // no-op
   }
 
-  public static StandardLevel defaultLogLevel() {
-    return StandardLevel.DEBUG;
+  public static LogLevel defaultLogLevel() {
+    return LogLevel.DEBUG;
   }
 
 }
