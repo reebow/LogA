@@ -10,12 +10,18 @@ import de.reebow.loga.LogLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PropertiesConfigParser implements ConfigParser {
+public final class PropertiesConfigParser implements ConfigParser {
 
   private static final Logger log = LogManager.getLogger();
 
+  private final String fileName;
+
+  public PropertiesConfigParser(String fileName) {
+    this.fileName = fileName;
+  }
+
   @Override
-  public Config parseConfig(String fileName) {
+  public Config parseConfig() {
     ClassLoader classLoader = PropertiesConfigParser.class.getClassLoader();
 
     URL url = classLoader.getResource(fileName);

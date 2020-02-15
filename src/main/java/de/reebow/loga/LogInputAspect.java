@@ -10,8 +10,9 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 
+@SuppressWarnings("rawtypes")
 @Aspect
-public class LogInputAspect {
+public final class LogInputAspect {
 
   @Before("@annotation(de.reebow.loga.annotations.LogInput) && execution(* *(..))")
   public void logInput(JoinPoint joinPoint) {
@@ -34,8 +35,7 @@ public class LogInputAspect {
     Object[] args = joinPoint.getArgs();
     String parameterTypesAndValuesStrings = createParameterAndValueString(parameterTypes, parameterNames, args);
 
-    String logString = String
-      .format("Input arguments for method \"%s\": %s", signature.getName(), parameterTypesAndValuesStrings);
+    String logString = String.format("Input arguments for method \"%s\": %s", signature.getName(), parameterTypesAndValuesStrings);
 
     logger.log(level, logString);
   }
@@ -51,8 +51,7 @@ public class LogInputAspect {
       } else {
         argument = arg.toString();
       }
-      parameterTypesAndValuesStrings.append("Parameter type: ").append(parameterTypes[i]).append("Parameter name: ")
-        .append(parameterNames[i]).append(" value: ").append(argument).append(". ");
+      parameterTypesAndValuesStrings.append("Parameter type: ").append(parameterTypes[i]).append("Parameter name: ").append(parameterNames[i]).append(" value: ").append(argument).append(". ");
     }
     return parameterTypesAndValuesStrings.toString();
   }

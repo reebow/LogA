@@ -42,7 +42,7 @@ public class LogInputAspectTest {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.initMocks(this);
-    LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+    LoggerContext ctx = (LoggerContext) LogManager.getContext(true);
     Configuration config = ctx.getConfiguration();
     appender = (TestAppender) config.getAppenders().get("TestAppender");
     cut = new LogInputAspect();

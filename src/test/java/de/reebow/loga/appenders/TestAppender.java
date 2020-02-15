@@ -20,7 +20,7 @@ import org.apache.logging.log4j.core.layout.PatternLayout;
   elementType = Appender.ELEMENT_TYPE, printObject = true)
 public class TestAppender extends AbstractAppender {
 
-  private List<LogEvent> messages = new ArrayList<>();
+  private final List<LogEvent> messages = new ArrayList<>();
 
   protected TestAppender(String name, Filter filter, Layout<? extends Serializable> layout) {
     super(name, filter, layout);

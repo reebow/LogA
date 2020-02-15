@@ -45,5 +45,5 @@ public enum LogLevel {
   /**
    * All events should be logged.
    */
-  ALL;
+  ALL
 }

@@ -2,7 +2,7 @@ package de.reebow.loga.config;
 
 public enum ConfigHolder {
 
-  INSTANCE(new PropertiesConfigParser().parseConfig(""));
+  INSTANCE(new ConfigParserFactory().configParser("loga.properties").parseConfig());
 
   private final Config config;
 
