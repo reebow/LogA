@@ -1,6 +1,6 @@
-package de.reebow.loga.config;
+package de.reebow.loga;
 
-public enum ConfigHolder {
+enum ConfigHolder {
 
   INSTANCE(new ConfigParserFactory().configParser("loga.properties").parseConfig());
 

@@ -1,4 +1,4 @@
-package de.reebow.loga.config;
+package de.reebow.loga;
 
 import static org.assertj.core.api.Assertions.assertThatObject;
 import static org.junit.jupiter.api.Assertions.assertThrows;

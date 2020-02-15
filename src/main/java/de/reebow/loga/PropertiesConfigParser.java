@@ -1,4 +1,4 @@
-package de.reebow.loga.config;
+package de.reebow.loga;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -6,11 +6,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
-import de.reebow.loga.LogLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public final class PropertiesConfigParser implements ConfigParser {
+final class PropertiesConfigParser implements ConfigParser {
 
   private static final Logger log = LogManager.getLogger();
 
