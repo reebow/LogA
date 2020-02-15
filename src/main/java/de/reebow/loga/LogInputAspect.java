@@ -1,6 +1,7 @@
 package de.reebow.loga;
 
 import de.reebow.loga.annotations.LogInput;
+import de.reebow.loga.config.ConfigHolder;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,8 +10,9 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 
+@SuppressWarnings("rawtypes")
 @Aspect
-public class LogInputAspect {
+public final class LogInputAspect {
 
   @Before("@annotation(de.reebow.loga.annotations.LogInput) && execution(* *(..))")
   public void logInput(JoinPoint joinPoint) {
@@ -18,7 +20,11 @@ public class LogInputAspect {
     Logger logger = LogManager.getLogger(signature.getDeclaringType());
 
     LogInput annotation = signature.getMethod().getAnnotation(LogInput.class);
-    Level level = Level.valueOf(annotation.value().name());
+    LogLevel logLevel = annotation.logLevel();
+    if (LogLevel.CONFIG.equals(logLevel)) {
+      logLevel = ConfigHolder.INSTANCE.getConfig().defaultLogLevel();
+    }
+    Level level = Level.valueOf(logLevel.name());
 
     if (!logger.isEnabled(level)) {
       return;
@@ -29,8 +35,7 @@ public class LogInputAspect {
     Object[] args = joinPoint.getArgs();
     String parameterTypesAndValuesStrings = createParameterAndValueString(parameterTypes, parameterNames, args);
 
-    String logString = String
-      .format("Input arguments for method \"%s\": %s", signature.getName(), parameterTypesAndValuesStrings);
+    String logString = String.format("Input arguments for method \"%s\": %s", signature.getName(), parameterTypesAndValuesStrings);
 
     logger.log(level, logString);
   }
@@ -46,8 +51,7 @@ public class LogInputAspect {
       } else {
         argument = arg.toString();
       }
-      parameterTypesAndValuesStrings.append("Parameter type: ").append(parameterTypes[i]).append("Parameter name: ")
-        .append(parameterNames[i]).append(" value: ").append(argument).append(". ");
+      parameterTypesAndValuesStrings.append("Parameter type: ").append(parameterTypes[i]).append("Parameter name: ").append(parameterNames[i]).append(" value: ").append(argument).append(". ");
     }
     return parameterTypesAndValuesStrings.toString();
   }
