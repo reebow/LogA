@@ -1,6 +1,6 @@
-package de.reebow.loga.config;
+package de.reebow.loga;
 
-public final class ConfigParserFactory {
+final class ConfigParserFactory {
 
   ConfigParser configParser(String fileName) {
     if ("loga.properties".equals(fileName)) {

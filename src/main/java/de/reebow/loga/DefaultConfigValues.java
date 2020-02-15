@@ -1,8 +1,6 @@
-package de.reebow.loga.config;
+package de.reebow.loga;
 
-import de.reebow.loga.LogLevel;
-
-public final class DefaultConfigValues {
+final class DefaultConfigValues {
 
   private DefaultConfigValues() {
     // no-op

@@ -1,7 +1,6 @@
 package de.reebow.loga;
 
 import de.reebow.loga.annotations.LogInput;
-import de.reebow.loga.config.ConfigHolder;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +11,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 
 @SuppressWarnings("rawtypes")
 @Aspect
-public final class LogInputAspect {
+final class LogInputAspect {
 
   @Before("@annotation(de.reebow.loga.annotations.LogInput) && execution(* *(..))")
   public void logInput(JoinPoint joinPoint) {

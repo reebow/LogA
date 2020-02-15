@@ -1,8 +1,7 @@
-package de.reebow.loga.config;
+package de.reebow.loga;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import de.reebow.loga.LogLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
