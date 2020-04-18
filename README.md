@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/reebow/LogA.svg)](https://jitpack.io/#reebow/LogA)
+
 # LogA
 Sick of writing log statesment that decrease the readability of your actual business logic?
 ```java 
@@ -17,10 +19,15 @@ plugins {
     // a plugin to do the aspect weaving
     id("io.freefair.aspectj.post-compile-weaving") version "4.1.6"
 }
+repositories {
+    // repository where the library is published
+    maven { url "https://jitpack.io" }
+}
 
 dependencies {
     // this library
-    aspect('libs/LogA-0.1.0.jar')
+    
+    aspect('com.github.reebow:LogA:-SNAPSHOT')
     // you need an implementation of log4j2-api, for example log4j2-core
     compile(group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.0')
 }
