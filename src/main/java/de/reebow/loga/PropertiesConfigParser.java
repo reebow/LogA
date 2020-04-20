@@ -25,7 +25,7 @@ final class PropertiesConfigParser implements ConfigParser {
 
     URL url = classLoader.getResource(fileName);
     if (url == null) {
-      return defaultConfig();
+      return DefaultConfigValues.defaultConfig();
     }
     try (InputStream inputStream = new FileInputStream(url.getFile())) {
       Properties properties = new Properties();
@@ -36,12 +36,8 @@ final class PropertiesConfigParser implements ConfigParser {
       return new Config(logLevel);
     } catch (IOException e) {
       log.error("Could not read properties file, returning default config.", e);
-      return defaultConfig();
+      return DefaultConfigValues.defaultConfig();
     }
-  }
-
-  private Config defaultConfig() {
-    return new Config(DefaultConfigValues.defaultLogLevel());
   }
 
   private LogLevel getLogLevel(Properties properties) {

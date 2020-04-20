@@ -22,7 +22,7 @@ class PropertiesConfigParserTest {
   }
 
   @Test
-  @DisplayName("Property defaultLogLevel is ERROR - parseConfig - return Config with defaultLogLevel ERROR")
+  @DisplayName("Property defaultLogLevel is ERROR - parseConfig - return config with defaultLogLevel ERROR")
   void parseDefaultLogLevel() {
     var cut = new PropertiesConfigParser(FILE_NAME);
     Config config = cut.parseConfig();
@@ -31,11 +31,20 @@ class PropertiesConfigParserTest {
   }
 
   @Test
-  @DisplayName("Property defaultLogLevel is null - parseConfig - return Config with defaultLogLevel DEBUG")
+  @DisplayName("Property defaultLogLevel is null - parseConfig - return config with defaultLogLevel DEBUG")
   void parseDefaultLogLevelNotExisting() {
     var cut = new PropertiesConfigParser(FILE_NAME_EMPTY);
     Config config = cut.parseConfig();
 
     assertThat(config.defaultLogLevel()).isEqualTo(LogLevel.DEBUG);
+  }
+
+  @Test
+  @DisplayName("Filename is wrong - parseConfig - return default config as nothing is configured")
+  void filenameReturnsNullUrl() {
+    var cut = new PropertiesConfigParser("wrongFilename");
+    Config config = cut.parseConfig();
+
+    assertThat(config).isEqualTo(DefaultConfigValues.defaultConfig());
   }
 }
