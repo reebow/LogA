@@ -1,4 +1,5 @@
 [![](https://jitpack.io/v/reebow/LogA.svg)](https://jitpack.io/#reebow/LogA)
+[![codecov](https://codecov.io/gh/reebow/LogA/branch/master/graph/badge.svg)](https://codecov.io/gh/reebow/LogA)
 
 # LogA
 Sick of writing log statesment that decrease the readability of your actual business logic?
