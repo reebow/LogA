@@ -3,7 +3,7 @@
  */
 package de.reebow.loga;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
@@ -21,13 +21,19 @@ import org.junit.jupiter.api.Test;
 class LogInputAspectIntegrationTest {
 
   public static final String EXPECTED_LOG_MESSAGE = "Input arguments for method \"methodUnderTest\": Parameter type: "
-    + "class java.lang.StringParameter name: name value: Daria. Parameter type: " + "intParameter name: age value: 1. ";
+    + "class java.lang.StringParameter name: name value: Daria. Parameter type: " + "intParameter name: age value: 1.";
 
   private TestAppender appender;
 
   @LogInput
   @SuppressWarnings("unused")
   public void methodUnderTest(String name, int age) {
+
+  }
+
+  @LogInput
+  @SuppressWarnings("unused")
+  public void methodNoParams() {
 
   }
 
@@ -45,9 +51,19 @@ class LogInputAspectIntegrationTest {
 
     List<LogEvent> logEvents = appender.getLogEvents();
 
-    assertEquals(1, logEvents.size());
-    LogEvent logEvent = logEvents.get(0);
-    assertEquals(EXPECTED_LOG_MESSAGE, ((MutableLogEvent) logEvent).getFormattedMessage());
+    assertThat(logEvents).extracting(logEvent -> ((MutableLogEvent) logEvent).getFormattedMessage())
+      .contains(EXPECTED_LOG_MESSAGE);
+  }
+
+  @Test
+  @DisplayName("Method with Annotation @LogInput and no parameter - invoke method - log method name")
+  void logInputWithNoParameter() {
+    methodNoParams();
+
+    List<LogEvent> logEvents = appender.getLogEvents();
+
+    assertThat(logEvents).extracting(logEvent -> ((MutableLogEvent) logEvent).getFormattedMessage())
+      .contains("Invoke method: \"methodNoParams\"");
   }
 
 }
