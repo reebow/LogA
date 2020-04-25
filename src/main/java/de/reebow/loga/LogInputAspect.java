@@ -32,26 +32,11 @@ public final class LogInputAspect {
     Class[] parameterTypes = signature.getParameterTypes();
     String[] parameterNames = signature.getParameterNames();
     Object[] args = joinPoint.getArgs();
-    String parameterTypesAndValuesStrings = createParameterAndValueString(parameterTypes, parameterNames, args);
 
-    String logString = String.format("Input arguments for method \"%s\": %s", signature.getName(), parameterTypesAndValuesStrings);
+    String logString = ConfigHolder.INSTANCE.getLogStatementGenerator()
+      .generateLogStatement(signature.getName(), parameterTypes, parameterNames, args);
 
     logger.log(level, logString);
   }
 
-  private String createParameterAndValueString(Class[] parameterTypes, String[] parameterNames, Object[] args) {
-    StringBuilder parameterTypesAndValuesStrings = new StringBuilder();
-
-    for (int i = 0; i < parameterTypes.length; i++) {
-      Object arg = args[i];
-      String argument;
-      if (arg == null) {
-        argument = "null";
-      } else {
-        argument = arg.toString();
-      }
-      parameterTypesAndValuesStrings.append("Parameter type: ").append(parameterTypes[i]).append("Parameter name: ").append(parameterNames[i]).append(" value: ").append(argument).append(". ");
-    }
-    return parameterTypesAndValuesStrings.toString();
-  }
 }
