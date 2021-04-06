@@ -11,7 +11,7 @@ plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id 'jacoco'
-    id("io.freefair.aspectj.post-compile-weaving") version "4.1.6"
+    id("io.freefair.aspectj.post-compile-weaving") version "5.3.3.3"
 }
 group = 'de.reebow'
 version = '0.1.0'
